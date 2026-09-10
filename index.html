@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weather App</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🌤️ Weather App</h1>
+
+        <!-- Current Date and Time -->
+        <div id="dateTime" class="date-time"></div>
+
+        <!-- City Search -->
+        <input
+            type="text"
+            id="city"
+            placeholder="Enter city"
+        >
+
+        <button onclick="getWeather()">
+            🔍 Search
+        </button>
+      <button class="refresh-btn" onclick="refreshWeather()">
+    🔄 Refresh Weather
+      </button>
+
+        <!-- Location Button -->
+        <button class="location-btn" onclick="getLocation()">
+            📍 Use My Location
+        </button>
+
+        <!-- Weather Result -->
+        <div id="result"></div>
+
+    </div>
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
