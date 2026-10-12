@@ -131,9 +131,12 @@ button:hover {
     margin: 8px 0;
 }
 
-#result > img {
-    width: 120px;
-
+.current-weather-icon {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    display: block;
+    margin: 10px auto;
     animation: float 2s infinite ease-in-out;
 }
 
@@ -361,3 +364,15 @@ hr {
 .refresh-btn:hover {
     background: #64748b;
 }
+.current-weather-emoji {
+    font-size: 110px;
+    line-height: 1;
+    margin: 10px auto 5px;
+    animation: float 2s infinite ease-in-out;
+}
+.forecast-emoji {
+    font-size: 55px;
+    line-height: 1;
+    margin: 10px 0;
+}
+  
