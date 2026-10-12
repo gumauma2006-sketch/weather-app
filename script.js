@@ -1,4 +1,25 @@
+function getWeatherEmoji(condition, icon) {
+    if (condition === "Clear") {
+        return icon.endsWith("n") ? "🌙" : "☀️";
+    }
 
+    if (condition === "Clouds") return "☁️";
+    if (condition === "Rain") return "🌧️";
+    if (condition === "Drizzle") return "🌦️";
+    if (condition === "Thunderstorm") return "⛈️";
+    if (condition === "Snow") return "❄️";
+
+    if (
+        condition === "Mist" ||
+        condition === "Smoke" ||
+        condition === "Haze" ||
+        condition === "Fog"
+    ) {
+        return "🌫️";
+    }
+
+    return "🌤️";
+}
 // ==============================
 // CURRENT DATE & TIME
 // ==============================
@@ -104,17 +125,38 @@ async function getWeather() {
         // ==============================
         // CURRENT WEATHER
         // ==============================
+       const currentCondition = weatherData.weather[0].main;
+const currentIcon = weatherData.weather[0].icon;
 
+let currentEmoji = "🌤️";
+
+if (currentCondition === "Clear") {
+    currentEmoji = currentIcon.endsWith("n") ? "🌙" : "☀️";
+} else if (currentCondition === "Clouds") {
+    currentEmoji = "☁️";
+} else if (currentCondition === "Rain") {
+    currentEmoji = "🌧️";
+} else if (currentCondition === "Drizzle") {
+    currentEmoji = "🌦️";
+} else if (currentCondition === "Thunderstorm") {
+    currentEmoji = "⛈️";
+} else if (currentCondition === "Snow") {
+    currentEmoji = "❄️";
+} else if (
+    currentCondition === "Mist" ||
+    currentCondition === "Smoke" ||
+    currentCondition === "Haze" ||
+    currentCondition === "Fog"
+) {
+    currentEmoji = "🌫️";
+}
         let resultHTML = `
 
             <h2>
                 ${weatherData.name}, ${weatherData.sys.country}
             </h2>
 
-            <img
-                src="https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png"
-                alt="Weather Icon"
-            >
+             <div class="current-weather-emoji">${currentEmoji}</div>
 
             <h3 class="weather-condition">
     ${weatherData.weather[0].main}
@@ -207,10 +249,9 @@ async function getWeather() {
                         ${time}
                     </p>
 
-                    <img
-                        src="https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png"
-                        alt="${item.weather[0].main}"
-                    >
+                     <div class="forecast-emoji">
+    ${getWeatherEmoji(item.weather[0].main, item.weather[0].icon)}
+</div>
 
                     <p>
                         ${item.weather[0].main}
@@ -280,7 +321,6 @@ async function getWeather() {
 
                         weather:
                             item.weather[0].main,
-
                         icon:
                             item.weather[0].icon
 
@@ -307,10 +347,9 @@ async function getWeather() {
                             ${item.day}
                         </h3>
 
-                        <img
-                            src="https://openweathermap.org/img/wn/${item.icon}@2x.png"
-                            alt="${item.weather}"
-                        >
+                        <div class="forecast-emoji">
+    ${getWeatherEmoji(item.weather, item.icon)}
+</div>
 
                         <p>
                             ${item.weather}
@@ -497,3 +536,5 @@ function refreshWeather() {
 
     getWeather();
 }
+
+                
